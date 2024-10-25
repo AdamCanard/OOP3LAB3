@@ -14,36 +14,68 @@ public class Dictionary<K, V> implements DictionaryADT<K, V> {
 
 	@Override
 	public V insert(K key, V value) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.containsKey(key)) {
+			return this.update(key, value);
+		} else {
+			keys.add(key);
+			values.add(value);
+			return null;
+		}
+
 	}
 
 	@Override
 	public V remove(K key) {
-		// TODO Auto-generated method stub
+		for (K currentKey : keys) {
+			if (currentKey.equals(key)) {
+				K keyToReturn = currentKey;
+				currentKey = null;
+				return keyToReturn;
+			}
+		}
+		// Jovie
 		return null;
 	}
 
 	@Override
 	public V update(K key, V value) {
-		// TODO Auto-generated method stub
+		if (this.containsKey(key)) {
+
+			V oldValue = this.lookup(key);
+
+			int counter = 0;
+			for (K currentKey : keys) {
+				if (currentKey.equals(key)) {
+					values.set(counter, value);
+					return oldValue;
+				}
+				counter++;
+			}
+
+		}
 		return null;
+
 	}
 
 	@Override
 	public V lookup(K key) {
-		// TODO Auto-generated method stub
+		// Jovie
 		return null;
 	}
 
 	@Override
 	public boolean containsKey(K key) {
-		// TODO Auto-generated method stub
+		for (K currentKey : keys) {
+			if (currentKey.equals(key)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(V value) {
+		// Jovie
 		// TODO Auto-generated method stub
 		return false;
 	}
